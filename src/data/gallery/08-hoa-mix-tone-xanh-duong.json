@@ -1,0 +1,53 @@
+{
+  "slug": "08-hoa-mix-tone-xanh-duong",
+  "title": "Mix Tone Xanh Dương",
+  "images": [
+    {
+      "image": "/gallery/08-hoa-mix-tone-xanh-duong/images/1/image.jpg",
+      "alt": "Mix Tone Xanh Dương 001",
+      "order": 1
+    },
+    {
+      "image": "/gallery/08-hoa-mix-tone-xanh-duong/images/2/image.jpg",
+      "alt": "Mix Tone Xanh Dương 002",
+      "order": 2
+    },
+    {
+      "image": "/gallery/08-hoa-mix-tone-xanh-duong/images/3/image.jpg",
+      "alt": "Mix Tone Xanh Dương 003",
+      "order": 3
+    },
+    {
+      "image": "/gallery/08-hoa-mix-tone-xanh-duong/images/4/image.jpg",
+      "alt": "Mix Tone Xanh Dương 004",
+      "order": 4
+    },
+    {
+      "image": "/gallery/08-hoa-mix-tone-xanh-duong/images/5/image.jpg",
+      "alt": "Mix Tone Xanh Dương 005",
+      "order": 5
+    },
+    {
+      "image": "/gallery/08-hoa-mix-tone-xanh-duong/images/6/image.jpg",
+      "alt": "Mix Tone Xanh Dương 006",
+      "order": 6
+    },
+    {
+      "image": "/gallery/08-hoa-mix-tone-xanh-duong/images/7/image.jpg",
+      "alt": "Mix Tone Xanh Dương 007",
+      "order": 7
+    },
+    {
+      "image": "/gallery/08-hoa-mix-tone-xanh-duong/images/8/image.jpg",
+      "alt": "Mix Tone Xanh Dương 008",
+      "order": 8
+    },
+    {
+      "image": "/gallery/08-hoa-mix-tone-xanh-duong/images/9/image.jpg",
+      "alt": "Mix Tone Xanh Dương 009",
+      "order": 9
+    }
+  ],
+  "order": 8,
+  "coverIndex": 1
+}

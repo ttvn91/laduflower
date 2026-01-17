@@ -1,0 +1,61 @@
+{
+  "site": {
+    "title": "LaDu Flower",
+    "tagline": "Tiệm hoa tươi tại Tokyo",
+    "location": "Tokyo • Japan"
+  },
+  "hero": {
+    "title": "LaDu Flower",
+    "subtitle": "Tiệm hoa tươi tại Tokyo"
+  },
+  "gallery": {
+    "badge": "Bộ sưu tập",
+    "title": "Khám phá các mẫu hoa",
+    "description": "Chọn danh mục yêu thích để xem chi tiết các mẫu hoa được thiết kế tinh tế"
+  },
+  "about": {
+    "badge": "Về chúng tôi",
+    "title": "Hoa đẹp mỗi ngày",
+    "features": [
+      {
+        "title": "Hoa tươi chọn lọc",
+        "description": "Nhập khẩu trực tiếp từ các vùng trồng hoa nổi tiếng"
+      },
+      {
+        "title": "Phối màu tinh tế",
+        "description": "Thiết kế theo phong cách Nhật - sang trọng, hiện đại"
+      },
+      {
+        "title": "Tư vấn nhanh",
+        "description": "Hỗ trợ chọn hoa phù hợp với mọi dịp"
+      },
+      {
+        "title": "Giao hàng nhanh",
+        "description": "Giao nhanh tại Tokyo"
+      }
+    ]
+  },
+  "contact": {
+    "badge": "Liên hệ",
+    "title": "Tư vấn chọn hoa",
+    "description": "Liên hệ với chúng tôi qua các kênh sau để được tư vấn và đặt hoa",
+    "socialLinks": [
+      {
+        "name": "Fanpage",
+        "url": "https://www.facebook.com/profile.php?id=61583124743443"
+      },
+      {
+        "name": "Facebook Lan Japan",
+        "url": "https://www.facebook.com/ngoclan.vu.3726"
+      },
+      {
+        "name": "TikTok",
+        "url": "https://www.tiktok.com/@vungoclanrg"
+      }
+    ]
+  },
+  "footer": {
+    "brandName": "LaDu Flower",
+    "copyright": "© {year} All rights reserved."
+  }
+}

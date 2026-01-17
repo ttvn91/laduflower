@@ -1,0 +1,43 @@
+{
+  "slug": "06-hoa-hong-khac",
+  "title": "Hoa Hồng Khác",
+  "order": 6,
+  "coverIndex": 1,
+  "images": [
+    {
+      "image": "/gallery/06-hoa-hong-khac/images/1/image.jpg",
+      "alt": "Hoa Hồng Khác 001",
+      "order": 1
+    },
+    {
+      "image": "/gallery/06-hoa-hong-khac/images/2/image.jpg",
+      "alt": "Hoa Hồng Khác 002",
+      "order": 2
+    },
+    {
+      "image": "/gallery/06-hoa-hong-khac/images/3/image.jpg",
+      "alt": "Hoa Hồng Khác 003",
+      "order": 3
+    },
+    {
+      "image": "/gallery/06-hoa-hong-khac/images/4/image.jpg",
+      "alt": "Hoa Hồng Khác 004",
+      "order": 4
+    },
+    {
+      "image": "/gallery/06-hoa-hong-khac/images/5/image.jpg",
+      "alt": "Hoa Hồng Khác 005",
+      "order": 5
+    },
+    {
+      "image": "/gallery/06-hoa-hong-khac/images/6/image.jpg",
+      "alt": "Hoa Hồng Khác 006",
+      "order": 6
+    },
+    {
+      "image": "/gallery/06-hoa-hong-khac/images/7/image.jpg",
+      "alt": "Hoa Hồng Khác 007",
+      "order": 7
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+---
+// Load all gallery category files explicitly for build compatibility
+import contentData from '../data/content.json';
+const { gallery } = contentData;
+
+// Load all gallery category files dynamically
+const galleryFiles = import.meta.glob('../data/gallery/*.json', { eager: true });
+// Vite's import.meta.glob with eager: true returns modules { key: { default: data } } or just data depending on config.
+// Safely unwrap default if present.
+const rawCategories = Object.values(galleryFiles).map((file: any) => file.default || file);
+
+const categories = rawCategories
+  .sort((a, b) => (a.order || 0) - (b.order || 0))
+  .map(cat => ({
+    ...cat,
+    // Sort images by order
+    images: (cat.images || []).sort((a, b) => (a.order || 0) - (b.order || 0)),
+    // Get cover image: use coverIndex if set (1-based), otherwise first image
+    cover: (() => {
+      // Convert 1-based coverIndex to 0-based array index
+      const idx = (cat.coverIndex || 1) - 1;
+      const img = cat.images?.[idx]?.image || cat.coverImagePath || cat.images?.[0]?.image;
+      if (!img) return '/placeholder.jpg';
+      return img.startsWith('/gallery/') ? img : `/gallery/${img}`;
+    })()
+  }));
+
+
+---
+
+<section id="gallery" class="py-20 px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <!-- Section header -->
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-1 text-sm tracking-widest uppercase text-[var(--color-primary)] border border-[var(--color-primary)]/30 rounded-full mb-4">
+        {gallery.badge}
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold text-[var(--color-dark)]" style="font-family: var(--font-serif);">
+        {gallery.title}
+      </h2>
+      <p class="text-gray-600 mt-4 max-w-xl mx-auto">
+        {gallery.description}
+      </p>
+    </div>
+
+    <!-- 3x3 Circular Grid -->
+    <div class="grid grid-cols-3 gap-x-6 gap-y-12 md:gap-x-10 md:gap-y-16 max-w-4xl mx-auto">
+      {categories.map((category, index) => (
+        <div 
+          class="category-item group cursor-pointer"
+          data-category-slug={category.slug}
+          data-category-images={JSON.stringify(category.images?.map(img => {
+            const src = typeof img === 'string' ? img : img?.image;
+            return src?.startsWith('/gallery/') ? src : `/gallery/${src}`;
+          }).filter(Boolean) || [])}
+          data-category-title={category.title}
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <!-- Circular image -->
+          <div class="category-circle">
+            <img 
+              src={category.cover} 
+              alt={category.title}
+              loading="lazy"
+            />
+          </div>
+          <!-- Title below circle -->
+          <p class="category-title" style="text-align: center; font-weight: 700; width: 100%; display: block; margin-top: 1rem; font-family: var(--font-sans);">{category.title}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+  import 'photoswipe/style.css';
+
+  document.querySelectorAll('.category-item').forEach((el) => {
+    el.addEventListener('click', () => {
+      const images = JSON.parse(el.getAttribute('data-category-images') || '[]');
+      const title = el.getAttribute('data-category-title') || '';
+      
+      if (images.length === 0) return;
+
+      // Preload images to get actual dimensions
+      const loadImageDimensions = (src: string): Promise<{width: number, height: number}> => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve({ width: img.naturalWidth, height: img.naturalHeight });
+          img.onerror = () => resolve({ width: 1200, height: 1600 }); // fallback
+          img.src = src;
+        });
+      };
+
+      // Load all dimensions before opening lightbox
+      Promise.all(images.map(loadImageDimensions)).then(dimensions => {
+        const dataSource = images.map((src: string, i: number) => ({
+          src,
+          width: dimensions[i].width,
+          height: dimensions[i].height,
+          alt: title
+        }));
+
+        const lightbox = new PhotoSwipeLightbox({
+          dataSource,
+          pswpModule: () => import('photoswipe'),
+          bgOpacity: 0.95,
+          showHideAnimationType: 'fade',
+          imageClickAction: 'next',
+          tapAction: 'next',
+          padding: { top: 20, bottom: 20, left: 20, right: 20 },
+        });
+
+        lightbox.init();
+        lightbox.loadAndOpen(0);
+      });
+    });
+  });
+</script>

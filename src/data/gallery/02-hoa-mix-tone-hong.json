@@ -1,0 +1,53 @@
+{
+  "slug": "02-hoa-mix-tone-hong",
+  "title": "Mix Tone Hồng",
+  "order": 2,
+  "coverIndex": 1,
+  "images": [
+    {
+      "image": "/gallery/02-hoa-mix-tone-hong/images/1/image.jpg",
+      "alt": "Mix Tone Hồng 001",
+      "order": 1
+    },
+    {
+      "image": "/gallery/02-hoa-mix-tone-hong/images/2/image.jpg",
+      "alt": "Mix Tone Hồng 002",
+      "order": 2
+    },
+    {
+      "image": "/gallery/02-hoa-mix-tone-hong/images/3/image.jpg",
+      "alt": "Mix Tone Hồng 003",
+      "order": 3
+    },
+    {
+      "image": "/gallery/02-hoa-mix-tone-hong/images/4/image.jpg",
+      "alt": "Mix Tone Hồng 004",
+      "order": 4
+    },
+    {
+      "image": "/gallery/02-hoa-mix-tone-hong/images/5/image.jpg",
+      "alt": "Mix Tone Hồng 005",
+      "order": 5
+    },
+    {
+      "image": "/gallery/02-hoa-mix-tone-hong/images/6/image.jpg",
+      "alt": "Mix Tone Hồng 006",
+      "order": 6
+    },
+    {
+      "image": "/gallery/02-hoa-mix-tone-hong/images/7/image.jpg",
+      "alt": "Mix Tone Hồng 007",
+      "order": 7
+    },
+    {
+      "image": "/gallery/02-hoa-mix-tone-hong/images/8/image.jpg",
+      "alt": "Mix Tone Hồng 008",
+      "order": 8
+    },
+    {
+      "image": "/gallery/02-hoa-mix-tone-hong/images/9/image.jpg",
+      "alt": "Mix Tone Hồng 009",
+      "order": 9
+    }
+  ]
+}

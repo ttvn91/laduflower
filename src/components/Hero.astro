@@ -1,0 +1,32 @@
+---
+import contentData from '../data/content.json';
+const { site, hero } = contentData;
+---
+
+<section id="hero" class="relative h-[45vh] min-h-[350px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-rose-50/80 via-white to-pink-50/80">
+  <!-- Content -->
+  <div class="relative z-10 text-center px-6 max-w-4xl mx-auto animate-fade-in-up">
+    <!-- Logo/Brand -->
+    <div class="mb-4">
+      <span class="inline-block px-4 py-1 text-xs tracking-widest uppercase text-[var(--color-primary)] border border-[var(--color-primary)]/30 rounded-full backdrop-blur-sm">
+        {site.location}
+      </span>
+    </div>
+    
+    <!-- Main headline -->
+    <h1 class="text-5xl md:text-6xl font-black mb-3 text-[var(--color-dark)]" style="font-family: var(--font-serif);">
+      {hero.title}
+    </h1>
+    
+    <p class="text-xl md:text-2xl font-semibold text-[var(--color-primary)]" style="font-family: var(--font-serif);">
+      {hero.subtitle}
+    </p>
+  </div>
+  
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-5 h-5 text-[var(--color-primary)]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
+</section>

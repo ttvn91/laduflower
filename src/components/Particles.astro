@@ -1,0 +1,240 @@
+---
+---
+
+<canvas id="particles-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-50" style="will-change: transform;"></canvas>
+
+<script>
+  function setupParticles() {
+    const canvas = document.getElementById('particles-canvas') as HTMLCanvasElement;
+    if (!canvas) return;
+    
+    // Disable particles on mobile for better performance
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      canvas.style.display = 'none';
+      return;
+    }
+    
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let resizeTimeout: ReturnType<typeof setTimeout>;
+    let particles: Particle[] = [];
+    let isVisible = true;
+
+    // ═══════════════════════════════════════════════════════════════
+    // 🎛️ TUNABLE PARAMETERS - Điều chỉnh các tham số tại đây
+    // ═══════════════════════════════════════════════════════════════
+    
+    // 🌸 SỐ LƯỢNG HOA (mật độ)
+    const PARTICLE_COUNT = 50;           // Số bông hoa (chỉ hiển thị trên desktop)
+    
+    // 🔗 MOUSE INTERACTION (Repulse)
+    const MOUSE_RADIUS = 150;            // Bán kính đẩy hoa (px)
+    const REPULSE_FORCE = 2.5;           // Lực đẩy (càng cao = đẩy mạnh hơn)
+    
+    // 🏃 TỐC ĐỘ BAY (Giảm tốc độ cho chậm hơn)
+    const SPEED_X = 0.08;                // Tốc độ ngang (giảm = chậm hơn)
+    const SPEED_Y_MIN = 0.04;            // Tốc độ rơi tối thiểu
+    const SPEED_Y_MAX = 0.08;            // Tốc độ rơi tối đa
+    const SWAY_AMOUNT = 0.003;           // Độ lắc lư
+    
+    // 🌺 KÍCH THƯỚC & XOAY
+    const SIZE_MIN = 5;                  // Kích thước nhỏ nhất (px)
+    const SIZE_MAX = 12;                 // Kích thước lớn nhất (px)
+    const ROTATION_SPEED = 0.015;        // Tốc độ xoay (giảm = chậm hơn)
+    
+    // 🎨 MÀU SẮC CÁNH HOA (RGBA) - Giảm opacity 15-25%
+    const PETAL_COLORS = [
+      'rgba(255, 150, 170, 0.25)',       // 25% opacity
+      'rgba(255, 130, 160, 0.22)',       // 22% opacity
+      'rgba(255, 170, 190, 0.18)',       // 18% opacity
+      'rgba(255, 140, 175, 0.15)',       // 15% opacity
+    ];
+    
+    // 🌼 HÌNH DẠNG CÁNH HOA
+    const PETAL_ROUNDNESS = 1.2;         // Độ tròn cánh (1.0 = bình thường, >1 = tròn/mập hơn)
+    const PETAL_INNER_RATIO = 0.5;       // Độ sâu rãnh giữa các cánh (0.3-0.6)
+    const CENTER_SIZE = 0.25;            // Kích thước tâm hoa (tỉ lệ với size)
+    const CENTER_COLOR = 'rgba(255, 215, 0, 0.8)';  // Màu tâm hoa
+    
+    // ═══════════════════════════════════════════════════════════════
+    
+    const mouse = { x: null as number | null, y: null as number | null, radius: MOUSE_RADIUS };
+
+    function setCanvasSize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+      x: number; y: number; vx: number; vy: number; size: number; rotation: number; rotationSpeed: number;
+      color: string;
+
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * SPEED_X;
+        this.vy = Math.random() * (SPEED_Y_MAX - SPEED_Y_MIN) + SPEED_Y_MIN;
+        this.size = Math.random() * (SIZE_MAX - SIZE_MIN) + SIZE_MIN;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * ROTATION_SPEED;
+        this.color = PETAL_COLORS[Math.floor(Math.random() * PETAL_COLORS.length)];
+      }
+
+      // Draw sakura petal shape - rounder, plumper petals
+      drawPetal() {
+        if (!ctx) return;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        
+        const s = this.size;
+        
+        // Draw 5-petal sakura flower with rounder petals
+        ctx.beginPath();
+        for (let i = 0; i < 5; i++) {
+          const angle = (i * 2 * Math.PI) / 5 - Math.PI / 2;
+          const nextAngle = ((i + 1) * 2 * Math.PI) / 5 - Math.PI / 2;
+          
+          // Outer petal point - extended for rounder shape
+          const outerX = Math.cos(angle) * s * PETAL_ROUNDNESS;
+          const outerY = Math.sin(angle) * s * PETAL_ROUNDNESS;
+          
+          // Inner connection point
+          const midAngle = angle + Math.PI / 5;
+          const innerX = Math.cos(midAngle) * (s * PETAL_INNER_RATIO);
+          const innerY = Math.sin(midAngle) * (s * PETAL_INNER_RATIO);
+          
+          if (i === 0) {
+            ctx.moveTo(outerX, outerY);
+          }
+          
+          // Rounder bezier curves for plump petals
+          const cp1x = Math.cos(angle + 0.35) * s * PETAL_ROUNDNESS * 0.95;
+          const cp1y = Math.sin(angle + 0.35) * s * PETAL_ROUNDNESS * 0.95;
+          
+          ctx.quadraticCurveTo(cp1x, cp1y, innerX, innerY);
+          
+          const cp2x = Math.cos(nextAngle - 0.35) * s * PETAL_ROUNDNESS * 0.95;
+          const cp2y = Math.sin(nextAngle - 0.35) * s * PETAL_ROUNDNESS * 0.95;
+          const nextOuterX = Math.cos(nextAngle) * s * PETAL_ROUNDNESS;
+          const nextOuterY = Math.sin(nextAngle) * s * PETAL_ROUNDNESS;
+          
+          ctx.quadraticCurveTo(cp2x, cp2y, nextOuterX, nextOuterY);
+        }
+        ctx.closePath();
+        
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        
+        // Center of flower
+        ctx.beginPath();
+        ctx.arc(0, 0, s * CENTER_SIZE, 0, Math.PI * 2);
+        ctx.fillStyle = CENTER_COLOR;
+        ctx.fill();
+        
+        ctx.restore();
+      }
+
+      update() {
+        // Repulse effect - push away from mouse
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = this.x - mouse.x;
+          const dy = this.y - mouse.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < mouse.radius) {
+            const force = (1 - distance / mouse.radius) * REPULSE_FORCE;
+            const angle = Math.atan2(dy, dx);
+            this.vx += Math.cos(angle) * force;
+            this.vy += Math.sin(angle) * force;
+          }
+        }
+        
+        // Slight swaying motion
+        this.vx += (Math.random() - 0.5) * SWAY_AMOUNT;
+        
+        // Keep velocity in bounds
+        this.vx = Math.max(-SPEED_X * 2, Math.min(SPEED_X * 2, this.vx));
+        this.vy = Math.max(SPEED_Y_MIN, Math.min(SPEED_Y_MAX * 1.5, this.vy));
+        
+        this.x += this.vx;
+        this.y += this.vy;
+        this.rotation += this.rotationSpeed;
+        
+        // Wrap around edges
+        if (this.x < -this.size) this.x = canvas.width + this.size;
+        if (this.x > canvas.width + this.size) this.x = -this.size;
+        if (this.y > canvas.height + this.size) {
+          this.y = -this.size;
+          this.x = Math.random() * canvas.width;
+        }
+      }
+    }
+
+    function init() {
+      setCanvasSize();
+      particles = [];
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    // Removed connect() - using repulse effect instead
+
+    function animate() {
+      if (!ctx || !isVisible) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].drawPetal();
+      }
+      // No connect() call - repulse handled in update()
+      animationFrameId = requestAnimationFrame(animate);
+    }
+
+    // Intersection Observer to pause when not visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          animate();
+        } else {
+          cancelAnimationFrame(animationFrameId);
+        }
+      });
+    });
+    observer.observe(canvas);
+
+    // Event Listeners
+    const onResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        init();
+      }, 250);
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+
+    const onMouseOut = () => {
+      mouse.x = null;
+      mouse.y = null;
+    };
+
+    window.addEventListener('resize', onResize);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseout', onMouseOut);
+
+    // Initial start
+    init();
+    animate();
+  }
+
+  // Run on page load
+  setupParticles();
+</script>

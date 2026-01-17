@@ -1,0 +1,43 @@
+{
+  "slug": "01-hoa-sophia",
+  "title": "Hoa Hồng Sophia",
+  "order": 1,
+  "coverIndex": 1,
+  "images": [
+    {
+      "image": "/gallery/01-hoa-sophia/images/1/image.jpg",
+      "alt": "Hoa Hồng Sophia 001",
+      "order": 1
+    },
+    {
+      "image": "/gallery/01-hoa-sophia/images/2/image.jpg",
+      "alt": "Hoa Hồng Sophia 002",
+      "order": 2
+    },
+    {
+      "image": "/gallery/01-hoa-sophia/images/3/image.jpg",
+      "alt": "Hoa Hồng Sophia 003",
+      "order": 3
+    },
+    {
+      "image": "/gallery/01-hoa-sophia/images/4/image.jpg",
+      "alt": "Hoa Hồng Sophia 004",
+      "order": 4
+    },
+    {
+      "image": "/gallery/01-hoa-sophia/images/5/image.jpg",
+      "alt": "Hoa Hồng Sophia 005",
+      "order": 5
+    },
+    {
+      "image": "/gallery/01-hoa-sophia/images/6/image.jpg",
+      "alt": "Hoa Hồng Sophia 006",
+      "order": 6
+    },
+    {
+      "image": "/gallery/01-hoa-sophia/images/7/image.jpg",
+      "alt": "Hoa Hồng Sophia 007",
+      "order": 7
+    }
+  ]
+}

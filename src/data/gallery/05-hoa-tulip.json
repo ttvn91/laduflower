@@ -1,0 +1,18 @@
+{
+  "slug": "05-hoa-tulip",
+  "title": "Hoa Tulip",
+  "order": 5,
+  "coverIndex": 1,
+  "images": [
+    {
+      "image": "/gallery/05-hoa-tulip/images/1/image.jpg",
+      "alt": "Hoa Tulip 001",
+      "order": 1
+    },
+    {
+      "image": "/gallery/05-hoa-tulip/images/2/image.jpg",
+      "alt": "Hoa Tulip 002",
+      "order": 2
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "slug": "07-hoa-cuoi",
+  "title": "Hoa Cưới",
+  "order": 7,
+  "coverIndex": 1,
+  "images": [
+    {
+      "image": "/gallery/07-hoa-cuoi/images/1/image.jpg",
+      "alt": "Hoa Cưới 001",
+      "order": 1
+    },
+    {
+      "image": "/gallery/07-hoa-cuoi/images/2/image.jpg",
+      "alt": "Hoa Cưới 002",
+      "order": 2
+    },
+    {
+      "image": "/gallery/07-hoa-cuoi/images/3/image.jpg",
+      "alt": "Hoa Cưới 003",
+      "order": 3
+    },
+    {
+      "image": "/gallery/07-hoa-cuoi/images/4/image.jpg",
+      "alt": "Hoa Cưới 004",
+      "order": 4
+    }
+  ]
+}

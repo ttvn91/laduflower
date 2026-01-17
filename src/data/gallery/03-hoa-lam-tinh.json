@@ -1,0 +1,43 @@
+{
+  "slug": "03-hoa-lam-tinh",
+  "title": "Hoa Lam Tinh",
+  "order": 3,
+  "coverIndex": 1,
+  "images": [
+    {
+      "image": "/gallery/03-hoa-lam-tinh/images/1/image.jpg",
+      "alt": "Hoa Lam Tinh 001",
+      "order": 1
+    },
+    {
+      "image": "/gallery/03-hoa-lam-tinh/images/2/image.jpg",
+      "alt": "Hoa Lam Tinh 002",
+      "order": 2
+    },
+    {
+      "image": "/gallery/03-hoa-lam-tinh/images/3/image.jpg",
+      "alt": "Hoa Lam Tinh 003",
+      "order": 3
+    },
+    {
+      "image": "/gallery/03-hoa-lam-tinh/images/4/image.jpg",
+      "alt": "Hoa Lam Tinh 004",
+      "order": 4
+    },
+    {
+      "image": "/gallery/03-hoa-lam-tinh/images/5/image.jpg",
+      "alt": "Hoa Lam Tinh 005",
+      "order": 5
+    },
+    {
+      "image": "/gallery/03-hoa-lam-tinh/images/6/image.jpg",
+      "alt": "Hoa Lam Tinh 006",
+      "order": 6
+    },
+    {
+      "image": "/gallery/03-hoa-lam-tinh/images/7/image.jpg",
+      "alt": "Hoa Lam Tinh 007",
+      "order": 7
+    }
+  ]
+}

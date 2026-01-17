@@ -1,0 +1,16 @@
+---
+import contentData from '../data/content.json';
+const { footer } = contentData;
+const currentYear = new Date().getFullYear();
+const copyrightText = footer.copyright.replace('{year}', currentYear.toString());
+---
+
+<footer class="py-8 px-6 bg-[var(--color-dark)] border-t border-white/10">
+  <div class="max-w-6xl mx-auto text-center">
+    <p class="text-gray-400 text-sm">
+      <span style="font-family: var(--font-serif);" class="text-white font-medium">{footer.brandName}</span>
+      <span class="mx-2">•</span>
+      {copyrightText}
+    </p>
+  </div>
+</footer>

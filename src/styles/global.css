@@ -1,0 +1,104 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --color-primary: #8B5A5A;
+  --color-secondary: #D4A574;
+  --color-accent: #E8D5C4;
+  --color-dark: #2C2C2C;
+  --color-light: #FAF8F5;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Category item container */
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Category circle styles */
+.category-circle {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  aspect-ratio: 1 / 1;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.category-item:hover .category-circle {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.category-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.category-item:hover .category-circle img {
+  transform: scale(1.1);
+}
+
+/* Category title below circle */
+.category-title {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700 !important;
+  color: var(--color-dark);
+  text-align: center !important;
+  width: 100%;
+  font-family: var(--font-serif);
+  line-height: 1.3;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .category-title {
+    font-size: 0.875rem;
+  }
+}
+
+/* PhotoSwipe customization */
+.pswp {
+  --pswp-bg: rgba(0, 0, 0, 0.9);
+}

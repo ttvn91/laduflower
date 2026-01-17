@@ -1,0 +1,23 @@
+{
+  "slug": "09-gio-hoa",
+  "title": "Giỏ Hoa",
+  "order": 9,
+  "coverIndex": 1,
+  "images": [
+    {
+      "image": "/gallery/09-gio-hoa/images/1/image.jpg",
+      "alt": "Giỏ Hoa 01",
+      "order": 1
+    },
+    {
+      "image": "/gallery/09-gio-hoa/images/2/image.jpg",
+      "alt": "Giỏ Hoa 02",
+      "order": 2
+    },
+    {
+      "image": "/gallery/09-gio-hoa/images/3/image.jpg",
+      "alt": "Giỏ Hoa 03",
+      "order": 3
+    }
+  ]
+}

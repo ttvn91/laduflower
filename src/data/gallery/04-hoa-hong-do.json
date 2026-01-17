@@ -1,0 +1,38 @@
+{
+  "slug": "04-hoa-hong-do",
+  "title": "Hoa Hồng Đỏ",
+  "order": 4,
+  "coverIndex": 1,
+  "images": [
+    {
+      "image": "/gallery/04-hoa-hong-do/images/1/image.jpg",
+      "alt": "Hoa Hồng Đỏ 001",
+      "order": 1
+    },
+    {
+      "image": "/gallery/04-hoa-hong-do/images/2/image.jpg",
+      "alt": "Hoa Hồng Đỏ 002",
+      "order": 2
+    },
+    {
+      "image": "/gallery/04-hoa-hong-do/images/3/image.jpg",
+      "alt": "Hoa Hồng Đỏ 003",
+      "order": 3
+    },
+    {
+      "image": "/gallery/04-hoa-hong-do/images/4/image.jpg",
+      "alt": "Hoa Hồng Đỏ 004",
+      "order": 4
+    },
+    {
+      "image": "/gallery/04-hoa-hong-do/images/5/image.jpg",
+      "alt": "Hoa Hồng Đỏ 005",
+      "order": 5
+    },
+    {
+      "image": "/gallery/04-hoa-hong-do/images/6/image.jpg",
+      "alt": "Hoa Hồng Đỏ 006",
+      "order": 6
+    }
+  ]
+}

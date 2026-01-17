@@ -1,0 +1,10 @@
+node_modules
+.vercel
+.astro
+dist
+.vscode
+.idea
+*.log
+.env
+.env.*
+CONTEXT.md
